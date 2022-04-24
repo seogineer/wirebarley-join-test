@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Exchange Rate Calculator - wirebarley</title>
+</head>
+<body>
+    <h1> 환율 계산 </h1>
+    <br>
+    송금국가: 미국(USD)<br>
+    수취국가:
+    <select id="recipientCountry" onchange="getExchangeRate()">
+        <option th:each="currency : ${currencyList}"
+                th:value="${currency.getCurrencyCode()}"
+                th:text="${currency.getCountryName()} + '(' + ${currency.getCurrencyCode()} + ')'"></option>
+    </select><br>
+    환율: <span id="exchangeRate"></span><br>
+    송금액: <input id="remittanceAmount" type="number"> USD<br>
+    <input type="button" value="Submit" style="width: 100px" onclick="calculate()"><br>
+    <br>
+    <span id="calculateResult"></span>
+
+    <!-- javascript -->
+    <script type="text/javascript" src="/js/index.js"></script>
+</body>
+</html>
