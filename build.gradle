@@ -23,6 +23,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'io.netty:netty-resolver-dns-native-macos:4.1.75.Final:osx-aarch_64'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.6.6'
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
