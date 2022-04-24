@@ -29,14 +29,18 @@ ajaxRequest = function(requestCurrencyCode){
 }
 
 printExchangeRate = function (exchangeRateJson, currencyCode){
+    const option = {
+        maximumFractionDigits: 2
+    };
+
     let exchangeRate = "";
 
     if(exchangeRateJson.usdkrw != null){
-        exchangeRate += exchangeRateJson.usdkrw.toFixed(2);
+        exchangeRate += exchangeRateJson.usdkrw.toLocaleString('ko-KR', option);
     } else if(exchangeRateJson.usdjpy != null){
-        exchangeRate += exchangeRateJson.usdjpy.toFixed(2);
+        exchangeRate += exchangeRateJson.usdjpy.toLocaleString('ko-KR', option);
     } else if(exchangeRateJson.usdphp != null){
-        exchangeRate += exchangeRateJson.usdphp.toFixed(2);
+        exchangeRate += exchangeRateJson.usdphp.toLocaleString('ko-KR', option);
     }
 
     exchangeRate += " " + currencyCode + "/USD";
