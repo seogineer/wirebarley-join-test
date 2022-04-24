@@ -30,6 +30,7 @@ ajaxRequest = function(requestCurrencyCode){
 
 printExchangeRate = function (exchangeRateJson, currencyCode){
     const option = {
+        minimumFractionDigits: 2,
         maximumFractionDigits: 2
     };
 
@@ -49,18 +50,23 @@ printExchangeRate = function (exchangeRateJson, currencyCode){
 }
 
 calculate = function(){
-    let remittanceAmount = document.getElementById("remittanceAmount").value;
-    let numberCheck = /^[0-9]+$/;
+    const option = {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    };
 
+    let remittanceAmount = document.getElementById("remittanceAmount").value;
+
+    let numberCheck = /^[0-9]+$/;
     if(remittanceAmount === "" || remittanceAmount < 0 || remittanceAmount > 10000 || !numberCheck.test(remittanceAmount)){
         alert("송금액이 바르지 않습니다");
         return;
-    }
 
-    let exchangeRate = document.getElementById("exchangeRate").textContent.split(" ", 1)[0];
+    }
+    let exchangeRate = document.getElementById("exchangeRate").textContent.split(" ", 1)[0].replace(',','');
     let currencyCode = document.getElementById("exchangeRate").textContent.split(" ")[1].split("/")[0];
 
-    let calculatedValue = (exchangeRate * remittanceAmount).toFixed(2);
+    let calculatedValue = (exchangeRate * remittanceAmount).toLocaleString('ko-KR', option);
 
     document.getElementById("calculateResult").textContent = "수취금액은 " + calculatedValue + " " + currencyCode + " 입니다.";
 }
