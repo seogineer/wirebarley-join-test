@@ -37,9 +37,23 @@ public class ExchangeRateControllerTest {
     }
 
     @Test
-    public void 환율_요청하기() throws Exception {
+    public void PHP_환율_요청하기() throws Exception {
         mockMvc.perform(
                 get("/exchange/PHP")
+        ).andExpect(status().isOk());
+    }
+
+    @Test
+    public void KRW_환율_요청하기() throws Exception {
+        mockMvc.perform(
+                get("/exchange/KRW")
+        ).andExpect(status().isOk());
+    }
+
+    @Test
+    public void JPY_환율_요청하기() throws Exception {
+        mockMvc.perform(
+                get("/exchange/JPY")
         ).andExpect(status().isOk());
     }
 
