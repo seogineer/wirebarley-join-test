@@ -11,6 +11,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Duration;
 
 @Service
@@ -29,11 +31,23 @@ public class ExchangeRateService {
             ExchangeRateResponse exchangeRateResponse = new ExchangeRateResponse();
 
             if(subscribeResponse.getQuotes().getUSDKRW() != null){
-                exchangeRateResponse.setUSDKRW(subscribeResponse.getQuotes().getUSDKRW());
+                exchangeRateResponse.setUSDKRW(
+                        new BigDecimal(
+                                subscribeResponse.getQuotes().getUSDKRW())
+                                .setScale(2, RoundingMode.HALF_EVEN)
+                                .floatValue());
             } else if(subscribeResponse.getQuotes().getUSDJPY() != null){
-                exchangeRateResponse.setUSDJPY(subscribeResponse.getQuotes().getUSDJPY());
+                exchangeRateResponse.setUSDJPY(
+                        new BigDecimal(
+                                subscribeResponse.getQuotes().getUSDJPY())
+                                .setScale(2, RoundingMode.HALF_EVEN)
+                                .floatValue());
             } else if(subscribeResponse.getQuotes().getUSDPHP() != null){
-                exchangeRateResponse.setUSDPHP(subscribeResponse.getQuotes().getUSDPHP());
+                exchangeRateResponse.setUSDPHP(
+                        new BigDecimal(
+                                subscribeResponse.getQuotes().getUSDPHP())
+                                .setScale(2, RoundingMode.HALF_EVEN)
+                                .floatValue());
             }
 
             return Mono.just(exchangeRateResponse);

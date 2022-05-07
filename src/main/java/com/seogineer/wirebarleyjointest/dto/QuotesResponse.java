@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class QuotesResponse {
     @JsonProperty("USDKRW")
-    private Double USDKRW;
+    private String USDKRW;
 
     @JsonProperty("USDJPY")
-    private Double USDJPY;
+    private String USDJPY;
 
     @JsonProperty("USDPHP")
-    private Double USDPHP;
+    private String USDPHP;
 }

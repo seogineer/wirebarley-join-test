@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ExchangeRateResponse {
-    private Double USDKRW;
-    private Double USDJPY;
-    private Double USDPHP;
+    private Float USDKRW;
+    private Float USDJPY;
+    private Float USDPHP;
 }
